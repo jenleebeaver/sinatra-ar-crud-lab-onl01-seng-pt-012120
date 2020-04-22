@@ -33,7 +33,7 @@ class ApplicationController < Sinatra::Base
 
   # show
  get "/articles/:id" do
-   @article = Article.find(params[:id])
+   @article = Article.find(params[:id]) #here we are grabbing the article with an id and setting it to an instance
    erb :show
  end
 
