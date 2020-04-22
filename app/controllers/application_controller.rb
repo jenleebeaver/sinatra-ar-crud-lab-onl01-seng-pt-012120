@@ -24,6 +24,7 @@ class ApplicationController < Sinatra::Base
     erb :new
   end
 
+#create
   post '/article' do
     erb :show
   end
