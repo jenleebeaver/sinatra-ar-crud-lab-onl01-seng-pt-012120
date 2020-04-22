@@ -1,4 +1,3 @@
-
 require_relative '../../config/environment'
 
 class ApplicationController < Sinatra::Base
@@ -12,37 +11,35 @@ class ApplicationController < Sinatra::Base
     redirect to "/articles"
   end
 
-#index
-  get '/articles' do
-    @articles = Article.all #here we are using ActiveRecord
+  # index
+  get "/articles" do
+    @articles = Article.all
     erb :index
   end
 
-#new
-  get '/articles/new' do
+  # new
+  get "/articles/new" do
     @article = Article.new
     erb :new
   end
 
-#create
-  post '/article' do
+  # create
+  post "/articles" do
     @article = Article.create(params)
     redirect to "/articles/#{ @article.id }"
-    erb :show
   end
 
   # show
- get "/articles/:id" do
-   @article = Article.find(params[:id]) #here we are grabbing the id of an article and setting it to an instance
-   erb :show
- end
+  get "/articles/:id" do
+    @article = Article.find(params[:id])
+    erb :show
+  end
 
-#edits
- get '/articles/:id/edit' do
-   @article = Article.find(params[:id])
-   erb :edit
- end
-
+  # edit
+  get "/articles/:id/edit" do
+    @article = Article.find(params[:id])
+    erb :edit
+  end
 
   # update
   patch "/articles/:id" do
@@ -52,9 +49,10 @@ class ApplicationController < Sinatra::Base
   end
 
   #destroy
-delete "/articles/:id" do
-  Article.destroy(params[:id])
-  redirect to "/articles"
-end
+  delete "/articles/:id" do
+    Article.destroy(params[:id])
+    redirect to "/articles"
+  end
+
 
 end
